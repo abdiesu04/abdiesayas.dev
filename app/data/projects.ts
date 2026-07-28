@@ -6,7 +6,9 @@ export type Project = {
   tech: string[];
   href?: string;
   status?: string;
-  preview?: string;
+  /** Tall capture of the live site. `aspect` is height ÷ width of the source
+   *  image, which sets how far it can pan inside the browser frame. */
+  shot?: { src: string; aspect: number };
 };
 
 export const projects: Project[] = [
@@ -18,7 +20,7 @@ export const projects: Project[] = [
       "AI document verification and automated underwriting for a US private-money lender in 44 states. Two extraction passes must agree; doubt routes to a human review queue, never into a loan decision.",
     tech: ["FastAPI", "LangChain", "LangGraph", "n8n", "Docker"],
     href: "https://malamafunding.com",
-    preview: "/projects/malama.png",
+    shot: { src: "/projects/malama-full.jpg", aspect: 1.25 },
   },
   {
     number: "02",
@@ -28,7 +30,7 @@ export const projects: Project[] = [
       "AI voice agents that call and qualify real-estate leads 24/7. Streaming STT → LLM → TTS overlapped for sub-second turns, with barge-in, voicemail detection, and human handoff.",
     tech: ["FastAPI", "Twilio", "Streaming STT/TTS", "Redis"],
     href: "https://investorcallback.com",
-    preview: "/projects/investorcallback.png",
+    shot: { src: "/projects/investorcallback-full.jpg", aspect: 1.8056 },
   },
   {
     number: "03",
@@ -38,7 +40,7 @@ export const projects: Project[] = [
       "Valuation engine for a UK home-buying service: comparables over recent sales and EPC data, an offer range with a confidence score — and low confidence routes to a human surveyor within one working day.",
     tech: ["Python", "PostgreSQL", "Comparables Pipeline"],
     href: "https://moovhomes.co.uk",
-    preview: "/projects/moovhomes.png",
+    shot: { src: "/projects/moovhomes-full.jpg", aspect: 1.8056 },
   },
   {
     number: "04",
@@ -48,7 +50,7 @@ export const projects: Project[] = [
       "AI video platform that takes a concept to a finished cut — script generation, studio-quality voiceover in 40+ languages, multi-layer compositing, and scheduled publishing.",
     tech: ["Next.js", "LLM Pipeline", "TTS", "Vercel"],
     href: "https://ai-video-eight.vercel.app/",
-    preview: "/projects/smartaivideo.png",
+    shot: { src: "/projects/smartaivideo-full.jpg", aspect: 1.7125 },
   },
   {
     number: "05",
@@ -57,15 +59,17 @@ export const projects: Project[] = [
     description:
       "AI-powered preparation for Rwandan national exams — multilingual practice, marking, and step-by-step explanations instead of answer keys.",
     tech: ["Next.js", "Python", "LLM Pipeline"],
-    status: "Case study on request",
+    href: "https://skillbridge.academy/en",
+    shot: { src: "/projects/skillbridge-full.jpg", aspect: 3.1944 },
   },
   {
     number: "06",
-    category: "SaaS · Private Beta",
+    category: "Brand OS · SaaS",
     name: "BrandVision",
     description:
-      "AI-powered brand operating system. Backend and AI orchestration for a product currently behind auth — written case study available on request.",
+      "AI-powered brand operating system. Backend and AI orchestration behind the product — brand memory that persists across sessions, predictive market insight, and campaign generation.",
     tech: ["Node.js", "Next.js"],
-    status: "Private beta — case study on request",
+    href: "https://www.brandvision.one/",
+    shot: { src: "/projects/brandvision-full.jpg", aspect: 1.8056 },
   },
 ];

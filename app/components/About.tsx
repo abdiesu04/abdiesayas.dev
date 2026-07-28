@@ -2,8 +2,8 @@ import Container from "./Container";
 import Reveal from "./Reveal";
 
 const PARAGRAPHS = [
-  "I’m a software engineer in Adama, Ethiopia, and most of what I build ships into other people’s businesses — a lender’s underwriting queue, a property company’s valuation engine, a sales team’s phone line.",
-  "I came up through a software engineering degree at ASTU and A2SV (Google-backed), then through Upwork, where 23 delivered projects taught me the thing courses don’t: clients pay for working, not for clever. The thread through all of it is uncertainty — teaching systems to say “I’m not sure” and hand off to a human instead of guessing.",
+  "I’m a software engineer in Addis Ababa, Ethiopia. I work on the unglamorous end of AI — systems that run every day inside companies I don’t own, where the people depending on them never see the model, only whether it got the answer right.",
+  "I came up through a software engineering degree at ASTU and A2SV (Google-backed), then through Upwork, where 23+ delivered projects taught me the thing courses don’t: clients pay for working, not for clever. The thread through all of it is uncertainty — teaching systems to say “I’m not sure” and hand off to a human instead of guessing.",
   "I’m looking for a team building AI products where correctness actually matters — and I’m happy being the person who asks what happens when the model is wrong.",
 ];
 
@@ -13,7 +13,7 @@ export default function About() {
       <Container>
         <Reveal y={16}>
           <div className="flex flex-wrap items-baseline justify-between gap-x-8 gap-y-2 border-b border-rule pb-5">
-            <h2 className="label">About</h2>
+            <h2 className="label text-ink/70">About</h2>
             <span className="label text-ink/45">The person behind the systems</span>
           </div>
         </Reveal>
@@ -24,6 +24,10 @@ export default function About() {
               className="max-w-[22ch] font-display leading-[1.08] tracking-[-0.015em]"
               style={{ fontSize: "clamp(2rem, 4.6vw, 3.75rem)" }}
             >
+              {/* The one clay that is not a verifiable claim. Kept by the
+                  owner's call: it is the section's only focal point and the
+                  site's thesis. Documented as the single exception so it
+                  stays one — see .proof-dot in globals.css. */}
               Teaching systems to say{" "}
               <span className="text-clay">“I’m not sure.”</span>
             </p>

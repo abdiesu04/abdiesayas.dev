@@ -1,5 +1,6 @@
 import { ArrowUpRight } from "lucide-react";
 import Container from "./Container";
+import Drift from "./Drift";
 import Reveal from "./Reveal";
 import VideoPlayer from "./VideoPlayer";
 
@@ -12,18 +13,21 @@ export default function Testimonial() {
         <Reveal y={16}>
           <div className="flex flex-wrap items-baseline justify-between gap-x-8 gap-y-2 border-b border-paper/15 pb-5">
             <h2 className="label text-paper/70">Client Testimonial</h2>
-            <span className="label text-paper/40">On Record</span>
+            <span className="label text-paper/45">On Record</span>
           </div>
         </Reveal>
 
         <div className="grid grid-cols-1 gap-10 pt-12 md:grid-cols-12 md:gap-8 md:pt-16">
           <Reveal className="flex flex-col justify-between gap-8 md:col-span-5">
-            <p
-              className="max-w-[16ch] font-display leading-[1.05] tracking-[-0.015em]"
-              style={{ fontSize: "clamp(2.25rem, 5vw, 4rem)" }}
-            >
-              A client on camera, unedited.
-            </p>
+            {/* Sits further back than the card, so it travels less. */}
+            <Drift from={-8} to={8}>
+              <p
+                className="max-w-[16ch] font-display leading-[1.05] tracking-[-0.015em]"
+                style={{ fontSize: "clamp(2.25rem, 5vw, 4rem)" }}
+              >
+                A client on camera, unedited.
+              </p>
+            </Drift>
 
             <div>
               <p className="text-[0.9375rem] leading-relaxed text-paper/60">
@@ -35,7 +39,7 @@ export default function Testimonial() {
                 href={VIDEO_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group mt-5 inline-flex items-center gap-2 border-b border-paper/30 pb-1 text-sm text-paper transition-colors hover:border-clay hover:text-clay"
+                className="group mt-5 inline-flex items-center gap-2 border-b border-paper/30 pb-1 text-sm text-paper transition-colors hover:border-clay-dark hover:text-clay-dark"
               >
                 Watch on YouTube
                 <ArrowUpRight
@@ -47,7 +51,9 @@ export default function Testimonial() {
           </Reveal>
 
           <Reveal delay={0.12} className="md:col-span-7">
-            <VideoPlayer />
+            <Drift from={16} to={-16}>
+              <VideoPlayer />
+            </Drift>
           </Reveal>
         </div>
       </Container>

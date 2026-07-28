@@ -14,17 +14,17 @@ export default function SiteHeader() {
         <nav className="flex h-14 items-center justify-between gap-4">
           <a
             href="#top"
-            className="label text-[0.625rem] transition-colors hover:text-clay sm:text-[0.6875rem]"
+            className="label hidden whitespace-nowrap text-[0.625rem] text-ink/70 transition-colors hover:text-clay min-[400px]:block sm:text-[0.6875rem]"
           >
             Abdi Esayas
           </a>
 
-          <ul className="flex items-center gap-4 sm:gap-7">
+          <ul className="flex w-full items-center justify-between gap-4 min-[400px]:w-auto min-[400px]:justify-end sm:gap-7">
             {LINKS.map((link) => (
               <li key={link.label}>
                 <a
                   href={link.href}
-                  className="label text-[0.625rem] text-ink/55 transition-colors hover:text-clay sm:text-[0.6875rem]"
+                  className="label text-[0.625rem] text-ink/70 transition-colors hover:text-clay sm:text-[0.6875rem]"
                 >
                   {link.label}
                 </a>

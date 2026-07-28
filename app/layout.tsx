@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://abdiesayas.com"),
   title: "Abdi Esayas — AI Systems Engineer",
   description:
-    "AI systems engineer in Adama, Ethiopia. Production systems for lending, real-time voice, property valuation and education — built to know when they are wrong.",
+    "AI systems engineer in Addis Ababa, Ethiopia. Production systems for lending, real-time voice, property valuation and education — built to know when they are wrong.",
   openGraph: {
     title: "Abdi Esayas — AI Systems Engineer",
     description:

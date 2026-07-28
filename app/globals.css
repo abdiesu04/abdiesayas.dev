@@ -1,11 +1,20 @@
 @import "tailwindcss";
 
+/* Gesso & Oxblood: a barely-cooled gesso ground, graphite rather than device
+   black, and a pigment oxblood that reads as annotation rather than
+   announcement. Body copy measures 5.94:1 on paper and 6.10:1 on ink. */
 @theme {
-  --color-paper: #f4f1ea;
-  --color-paper-deep: #eae5da;
-  --color-ink: #14120f;
-  --color-clay: #c1502e;
-  --color-rule: rgba(20, 18, 15, 0.14);
+  --color-paper: #efeee9;
+  --color-paper-deep: #e3e1d9;
+  --color-ink: #1b1a17;
+  --color-clay: #9c3b2b;
+  /* The oxblood for use *on* ink. --color-clay is 2.55:1 there, which fails
+     text of any size, so this is the same pigment lifted until it clears the
+     4.5:1 floor: hue 8.7deg against clay's 8.5deg, saturation 53% against
+     57%. Reserved for the accent's dark-ground homes; every light-ground use
+     stays on --color-clay, which is 5.88:1 on paper. */
+  --color-clay-dark: #cc6857;
+  --color-rule: rgba(27, 26, 23, 0.15);
 
   --font-display: var(--font-instrument-serif), Georgia, serif;
   --font-sans: var(--font-inter), system-ui, sans-serif;
@@ -48,6 +57,27 @@ body {
   text-transform: uppercase;
 }
 
+/* The page's one credibility marker. Clay means a third party can check the
+   claim it sits beside — a live URL, a platform rank, a named backer. Never
+   list numbering, never carousel state; that discipline is what lets the
+   accent carry information on sight. One deliberate exception exists — the
+   About pull-quote — and it should stay the only one. */
+.proof-dot {
+  display: inline-block;
+  flex: none;
+  width: 0.375rem;
+  height: 0.375rem;
+  border-radius: 9999px;
+  background: var(--color-clay);
+}
+
+/* The same dot on ink. --color-clay is 2.55:1 there, under the 3:1 floor a
+   graphical object needs, so it takes the lifted oxblood. Not a Tailwind
+   utility: .proof-dot is unlayered and would outrank one. */
+.proof-dot-ink {
+  background: var(--color-clay-dark);
+}
+
 @keyframes marquee-drift {
   from {
     transform: translateX(0);
@@ -58,7 +88,173 @@ body {
 }
 
 .marquee-track {
-  animation: marquee-drift 42s linear infinite;
+  animation: marquee-drift var(--drift, 78s) linear infinite;
+}
+
+.stack-band {
+  --tile: clamp(2.875rem, 4.4vw, 3.5rem);
+  --tile-gap: clamp(0.75rem, 1.5vw, 1.25rem);
+  --depth: clamp(0.375rem, 0.75vw, 0.625rem);
+  /* --tile sets chip height; width comes from the mark plus its name.
+     Everything inside is a fraction of it so the chip scales as one piece. */
+  --chip-pad: calc(var(--tile) * 0.22);
+  --mark-gap: calc(var(--tile) * 0.15);
+  /* Pinned to the floor: 0.6875rem is the site's micro-label size, and below
+     ~10px at this tracking the ten-glyph names (PostgreSQL, LangChain,
+     LangGraph) stop resolving on a phone. The upper bound is what the name
+     would grow to if --tile ever exceeded 3.75rem; it is not reached today. */
+  --name-size: clamp(0.6875rem, calc(var(--tile) * 0.2), 0.75rem);
+  --name-track: 0.07em;
+  /* Drift speed is (track width / 2) / duration. The track does not scale
+     with --tile alone — the name sits at its 11px floor across the whole
+     range, so chips grow relatively wider as the viewport narrows and the
+     track shortens far less than the tile does. These steps track that curve
+     to hold ~34px/s on phones and ~57px/s on desktop, the speed the band has
+     always run at. Re-solved when the chips were shrunk: the track lost 24.5%
+     of its width at desktop but only 5.8% on a phone, because a phone chip is
+     mostly floor-height name, so the steps did not move by a common factor. */
+  --drift: 137s;
+}
+
+@media (min-width: 50rem) {
+  .stack-band {
+    --drift: 129s;
+  }
+}
+
+@media (min-width: 56rem) {
+  .stack-band {
+    --drift: 117s;
+  }
+}
+
+@media (min-width: 64rem) {
+  .stack-band {
+    --drift: 105s;
+  }
+}
+
+@media (min-width: 88rem) {
+  .stack-band {
+    --drift: 97s;
+  }
+}
+
+.stack-band:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+.stack-row {
+  gap: var(--tile-gap);
+  padding-right: var(--tile-gap);
+}
+
+/* Card stock chip lit from the top left. The side face is drawn as a run of
+   opaque stepped shadows: each step is the tile rect nudged along the
+   receding axis, so the strips read as one slab darkening as it falls away.
+   Steps are fractions of --depth so the slab scales with the tile. */
+.stack-tile {
+  display: flex;
+  align-items: center;
+  gap: var(--mark-gap);
+  height: var(--tile);
+  padding-inline: var(--chip-pad);
+  border: 1px solid rgba(20, 18, 15, 0.15);
+  border-radius: 2px;
+  background: linear-gradient(146deg, #fffefb 0%, #f9f5ec 48%, #e7e0d0 100%);
+  /* Shallower yaw than a square chip would take: across a plate this wide the
+     keystone would otherwise smear the wordmark. The slab is drawn by the
+     shadow steps below, so depth survives the flatter angle intact. */
+  transform: perspective(620px) rotateY(-12deg) rotateX(5deg);
+  box-shadow:
+    calc(var(--depth) * 0.125) calc(var(--depth) * 0.04) 0 #d9d0bc,
+    calc(var(--depth) * 0.25) calc(var(--depth) * 0.08) 0 #d0c6b0,
+    calc(var(--depth) * 0.375) calc(var(--depth) * 0.12) 0 #c7bca4,
+    calc(var(--depth) * 0.5) calc(var(--depth) * 0.16) 0 #beb298,
+    calc(var(--depth) * 0.625) calc(var(--depth) * 0.2) 0 #b5a88d,
+    calc(var(--depth) * 0.75) calc(var(--depth) * 0.24) 0 #ac9e82,
+    calc(var(--depth) * 0.875) calc(var(--depth) * 0.28) 0 #a39477,
+    var(--depth) calc(var(--depth) * 0.32) 0 #9a8b6d,
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    inset -1px 0 0 rgba(255, 255, 255, 0.7),
+    inset 0 -1px 0 rgba(20, 18, 15, 0.08),
+    calc(var(--depth) * 0.6) calc(var(--depth) * 0.75) calc(var(--depth) * 0.8)
+      calc(var(--depth) * -0.35) rgba(20, 18, 15, 0.22),
+    calc(var(--depth) * 1.4) calc(var(--depth) * 1.7) calc(var(--depth) * 2)
+      calc(var(--depth) * -0.9) rgba(20, 18, 15, 0.34);
+  transition:
+    transform 340ms cubic-bezier(0.16, 1, 0.3, 1),
+    background 340ms cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 340ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.stack-mark {
+  flex: 0 0 auto;
+  width: calc(var(--tile) * 0.52 * var(--mark-scale, 1));
+  height: calc(var(--tile) * 0.52 * var(--mark-scale, 1));
+  background-color: var(--brand);
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  -webkit-mask-size: contain;
+  filter: drop-shadow(0.5px 1px 0.5px rgba(20, 18, 15, 0.18));
+  transition:
+    transform 340ms cubic-bezier(0.16, 1, 0.3, 1),
+    filter 340ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* The .label micro-type idiom — mono, small, tracked — minus its uppercasing,
+   because these are wordmarks: PostgreSQL, Next.js and n8n are set as their
+   owners set them. */
+.stack-name {
+  font-family: var(--font-mono);
+  font-size: var(--name-size);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: var(--name-track);
+  /* Letter-spacing also lands after the last glyph; pulling it back keeps the
+     trailing padding matched to the leading padding. */
+  margin-right: calc(var(--name-track) * -1);
+  color: rgba(20, 18, 15, 0.74);
+  white-space: nowrap;
+  transition: color 340ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (hover: hover) {
+  /* Turning square-on to the viewer hides the side face, so the slab
+     collapses as the chip lifts and its cast shadow spreads. */
+  .stack-tile:hover {
+    transform: perspective(620px) rotateY(-2deg) rotateX(1deg)
+      translateY(-0.5rem) scale(1.06);
+    background: linear-gradient(146deg, #fffffd 0%, #fdfaf3 48%, #efe9dc 100%);
+    box-shadow:
+      calc(var(--depth) * 0.03) calc(var(--depth) * 0.01) 0 #d9d0bc,
+      calc(var(--depth) * 0.06) calc(var(--depth) * 0.02) 0 #d0c6b0,
+      calc(var(--depth) * 0.09) calc(var(--depth) * 0.03) 0 #c7bca4,
+      calc(var(--depth) * 0.12) calc(var(--depth) * 0.04) 0 #beb298,
+      calc(var(--depth) * 0.15) calc(var(--depth) * 0.05) 0 #b5a88d,
+      calc(var(--depth) * 0.18) calc(var(--depth) * 0.06) 0 #ac9e82,
+      calc(var(--depth) * 0.21) calc(var(--depth) * 0.07) 0 #a39477,
+      calc(var(--depth) * 0.24) calc(var(--depth) * 0.08) 0 #9a8b6d,
+      inset 0 1px 0 rgba(255, 255, 255, 0.95),
+      inset -1px 0 0 rgba(255, 255, 255, 0.7),
+      inset 0 -1px 0 rgba(20, 18, 15, 0.05),
+      calc(var(--depth) * 0.4) calc(var(--depth) * 1.1) calc(var(--depth) * 1.4)
+        calc(var(--depth) * -0.4) rgba(20, 18, 15, 0.16),
+      calc(var(--depth) * 0.9) calc(var(--depth) * 2.4) calc(var(--depth) * 3.2)
+        calc(var(--depth) * -1.1) rgba(20, 18, 15, 0.3);
+  }
+
+  .stack-tile:hover .stack-mark {
+    transform: scale(1.08);
+    filter: drop-shadow(1px 2px 2px rgba(20, 18, 15, 0.22));
+  }
+
+  .stack-tile:hover .stack-name {
+    color: rgba(20, 18, 15, 0.92);
+  }
 }
 
 /* Reveal animations set their start state via JS, so content stays
@@ -83,7 +279,43 @@ body {
 
   .marquee-track {
     animation: none;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .stack-band {
+    padding-inline: 1rem;
+  }
+
+  /* Without the drift there is no way to reach the overflow, so the single
+     visible copy wraps into a centred block instead. */
+  .stack-row {
     flex-wrap: wrap;
+    justify-content: center;
+    row-gap: var(--tile-gap);
+    padding-right: 0;
+    width: 100%;
+    max-width: 74rem;
+    margin-inline: auto;
+  }
+
+  /* One column width for every chip, so full rows line up and the short last
+     row centres under them rather than reading as a ragged tail. The cap is
+     set just clear of the widest chip (PostgreSQL) at the largest --tile, so
+     the 74rem container takes exactly seven columns and the fourteen chips
+     land as 7 x 2 with no tail. The floor never drops below two columns:
+     320px gets a 2 x 7 block, not a 14 stack. */
+  .stack-row > li {
+    width: min(9.25rem, max(8.25rem, calc((100% - var(--tile-gap)) / 2)));
+  }
+
+  .stack-tile {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .stack-row[aria-hidden="true"] {
+    display: none;
   }
 
   *,
