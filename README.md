@@ -1,5 +1,7 @@
 # abdiesayas.dev
 
+<!-- Personal portfolio site by Abdi Esayas. -->
+
 Personal portfolio for Abdi Esayas — AI systems engineer, Addis Ababa.
 
 An editorial, print-inspired single page: masthead, technology band, selected work, career, about, and contact. Motion is deliberate and restrained, and the whole page stays readable with JavaScript disabled or reduced motion enabled.
