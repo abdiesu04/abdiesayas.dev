@@ -177,8 +177,13 @@ export default function Work() {
     >
       <Container>
         <Reveal y={16}>
-          <div className="flex flex-wrap items-baseline justify-between gap-x-8 gap-y-2 border-b border-rule pb-5">
-            <h2 className="label text-ink/70">Selected Work</h2>
+          <div className="flex flex-wrap items-baseline justify-between gap-x-8 gap-y-3 border-b border-rule pb-5">
+            <h2
+              className="font-display leading-[1.05] tracking-[-0.015em] text-ink"
+              style={{ fontSize: "clamp(1.75rem, 3.2vw, 2.75rem)" }}
+            >
+              Selected Work
+            </h2>
             {/* The section's whole claim, and checkable by clicking any of
                 the six links below it. */}
             <span className="label inline-flex items-center gap-2 text-clay">

@@ -14,7 +14,7 @@ const STATS = [
 const SOCIALS = [
   { label: "GitHub", href: "https://github.com/abdiesu04" },
   { label: "LinkedIn", href: "https://www.linkedin.com/in/abdiesayas" },
-  { label: "Upwork", href: "https://www.upwork.com/freelancers/~abdiesayas" },
+  { label: "Upwork", href: "https://www.upwork.com/freelancers/~01d208502b9f008d54" },
 ];
 
 export default function Hero() {
@@ -52,9 +52,9 @@ export default function Hero() {
               className="max-w-[42ch] font-display leading-[1.24] tracking-[-0.01em]"
               style={{ fontSize: "clamp(1.2rem, 2.1vw, 1.85rem)" }}
             >
-              Most of what I build ships into other people’s businesses rather
-              than my own — production systems handling real money, real
-              customers, and real consequences when they get something wrong.
+              Most of what I build runs inside other people’s companies.
+              Production systems handling real money, real customers, and the
+              real cost of being wrong.
             </p>
           </Reveal>
 

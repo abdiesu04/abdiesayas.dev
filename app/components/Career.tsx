@@ -33,8 +33,13 @@ export default function Career() {
     <section id="career" className="scroll-mt-20 py-20 md:py-28">
       <Container>
         <Reveal y={16}>
-          <div className="flex flex-wrap items-baseline justify-between gap-x-8 gap-y-2 border-b border-rule pb-5">
-            <h2 className="label text-ink/70">Career</h2>
+          <div className="flex flex-wrap items-baseline justify-between gap-x-8 gap-y-3 border-b border-rule pb-5">
+            <h2
+              className="font-display leading-[1.05] tracking-[-0.015em] text-ink"
+              style={{ fontSize: "clamp(1.75rem, 3.2vw, 2.75rem)" }}
+            >
+              Career
+            </h2>
             <span className="label text-ink/45">Experience — On the Ledger</span>
           </div>
         </Reveal>

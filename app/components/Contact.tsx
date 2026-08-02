@@ -8,7 +8,7 @@ const EMAIL = "abdiesayasbayisa@gmail.com";
 const SOCIALS = [
   { label: "GitHub", href: "https://github.com/abdiesu04" },
   { label: "LinkedIn", href: "https://www.linkedin.com/in/abdiesayas" },
-  { label: "Upwork", href: "https://www.upwork.com/freelancers/~abdiesayas" },
+  { label: "Upwork", href: "https://www.upwork.com/freelancers/~01d208502b9f008d54" },
 ];
 
 export default function Contact() {
@@ -16,8 +16,13 @@ export default function Contact() {
     <section id="contact" className="scroll-mt-20 bg-ink pt-20 text-paper md:pt-28">
       <Container>
         <Reveal y={16}>
-          <div className="flex flex-wrap items-baseline justify-between gap-x-8 gap-y-2 border-b border-paper/15 pb-5">
-            <h2 className="label text-paper/70">Next Step</h2>
+          <div className="flex flex-wrap items-baseline justify-between gap-x-8 gap-y-3 border-b border-paper/15 pb-5">
+            <h2
+              className="font-display leading-[1.05] tracking-[-0.015em] text-paper"
+              style={{ fontSize: "clamp(1.75rem, 3.2vw, 2.75rem)" }}
+            >
+              Next Step
+            </h2>
             {/* Closes the loop the hero's availability line opened. On ink
                 the accent cannot carry 11px text at an accessible contrast,
                 so the dot carries the signal and the words stay paper. */}

@@ -11,8 +11,13 @@ export default function Testimonial() {
     <section className="bg-ink py-20 text-paper md:py-28">
       <Container>
         <Reveal y={16}>
-          <div className="flex flex-wrap items-baseline justify-between gap-x-8 gap-y-2 border-b border-paper/15 pb-5">
-            <h2 className="label text-paper/70">Client Testimonial</h2>
+          <div className="flex flex-wrap items-baseline justify-between gap-x-8 gap-y-3 border-b border-paper/15 pb-5">
+            <h2
+              className="font-display leading-[1.05] tracking-[-0.015em] text-paper"
+              style={{ fontSize: "clamp(1.75rem, 3.2vw, 2.75rem)" }}
+            >
+              Client Testimonial
+            </h2>
             <span className="label text-paper/45">On Record</span>
           </div>
         </Reveal>
