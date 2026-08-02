@@ -13,7 +13,7 @@ const STATS = [
 
 const SOCIALS = [
   { label: "GitHub", href: "https://github.com/abdiesu04" },
-  { label: "LinkedIn", href: "https://www.linkedin.com/in/abdiesayas" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/abdiesu04" },
   { label: "Upwork", href: "https://www.upwork.com/freelancers/~01d208502b9f008d54" },
 ];
 
