@@ -2,10 +2,14 @@ import { ArrowUpRight } from "lucide-react";
 import Container from "./Container";
 import LocalTime from "./LocalTime";
 import Reveal from "./Reveal";
+import { pdfPath } from "../data/resume";
 
 const EMAIL = "abdiesayasbayisa@gmail.com";
 
 const SOCIALS = [
+  /* The file rather than the section: a reader who has scrolled this far and
+     still wants it wants to keep it. */
+  { label: "Résumé", href: pdfPath },
   { label: "GitHub", href: "https://github.com/abdiesu04" },
   { label: "LinkedIn", href: "https://www.linkedin.com/in/abdiesu04" },
   { label: "Upwork", href: "https://www.upwork.com/freelancers/~01d208502b9f008d54" },

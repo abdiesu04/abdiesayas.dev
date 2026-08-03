@@ -3,6 +3,7 @@ import Container from "./Container";
 const LINKS = [
   { label: "Work", href: "#work" },
   { label: "Career", href: "#career" },
+  { label: "Résumé", href: "#resume" },
   { label: "About", href: "#about" },
   { label: "Contact", href: "#contact" },
 ];
@@ -19,7 +20,7 @@ export default function SiteHeader() {
             Abdi Esayas
           </a>
 
-          <ul className="flex w-full items-center justify-between gap-4 min-[400px]:w-auto min-[400px]:justify-end sm:gap-7">
+          <ul className="flex w-full items-center justify-between gap-4 min-[400px]:w-auto min-[400px]:justify-end sm:gap-6">
             {LINKS.map((link) => (
               <li key={link.label}>
                 <a

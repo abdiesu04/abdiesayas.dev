@@ -2,6 +2,7 @@ import About from "./components/About";
 import Career from "./components/Career";
 import Contact from "./components/Contact";
 import Hero from "./components/Hero";
+import Resume from "./components/Resume";
 import SiteHeader from "./components/SiteHeader";
 import StackMarquee from "./components/StackMarquee";
 import Testimonial from "./components/Testimonial";
@@ -17,6 +18,7 @@ export default function Home() {
         <Work />
         <Testimonial />
         <Career />
+        <Resume />
         <About />
         <Contact />
       </main>
